@@ -18,6 +18,7 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
     private List<TodoModel> currentList;
     private final Context context;
 
+
     public TodosRecyclerViewAdapter(List<TodoModel> currentList, Context context) {
         this.currentList = currentList;
         this.context = context;
