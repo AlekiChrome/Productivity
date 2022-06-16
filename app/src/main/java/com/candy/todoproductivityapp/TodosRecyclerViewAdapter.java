@@ -39,7 +39,6 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
         holder.bind(currentList.get(position));
-
     }
 
 
