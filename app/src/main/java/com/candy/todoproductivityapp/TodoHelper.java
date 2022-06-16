@@ -19,7 +19,11 @@ public class TodoHelper {
     public static final String NAME_OF_SHARED_PREFS = "UserContent";
     public static final String KEY_LIST = "User_Todo_Data";
 
+    public TodosRecyclerViewAdapter adapter;
+
     private final SharedPreferences sharedPreferences;
+    public List<TodoModel> list;
+
 
 
     /**
@@ -28,7 +32,9 @@ public class TodoHelper {
      */
     public TodoHelper(Context applicationContext) {
         sharedPreferences = applicationContext.getSharedPreferences(NAME_OF_SHARED_PREFS, MODE_PRIVATE);
+        list = new ArrayList<>();
     }
+
 
     // * get content stored on disk (tell Gson to convert list of todos)
     public List<TodoModel> getFromDisk() {
@@ -38,8 +44,8 @@ public class TodoHelper {
         Type type = new TypeToken<List<TodoModel>>() {
         }.getType();
 
-        List<TodoModel> todoModels = gson.fromJson(json, type);
-        return todoModels == null ? new ArrayList<>() : new ArrayList<>(todoModels) ;
+        list = gson.fromJson(json, type);
+        return list == null ? new ArrayList<>() : new ArrayList<>(list) ;
     }
 
     /**
@@ -47,17 +53,17 @@ public class TodoHelper {
      * @param newTodo
      */
     public void update(TodoModel newTodo) {
-        List<TodoModel> currentList = getFromDisk();
-        List<TodoModel> newList = new ArrayList<>();
+//        List<TodoModel> currentList = getFromDisk();
+//        List<TodoModel> newList = new ArrayList<>();
 
-        for (TodoModel current : currentList) {
+        for (TodoModel current : list) {
             if (current.getId() == newTodo.getId()) {
-                newList.add(current);
+                list.add(current);
             } else {
-                newList.add(newTodo);
+                list.add(newTodo);
             }
         }
-        saveInternally(newList);
+        saveInternally();
     }
 
     /**
@@ -65,25 +71,24 @@ public class TodoHelper {
      * @param newTodo
      */
     public void insert(TodoModel newTodo) {
-        List<TodoModel> currentList = getFromDisk();
-        List<TodoModel> newList = new ArrayList<>(currentList);
-        newList.add(newTodo);
+//        List<TodoModel> currentList = getFromDisk();
+//        List<TodoModel> newList = new ArrayList<>(currentList);
+        list.add(newTodo);
 
-        saveInternally(newList);
+        adapter.notifyDataSetChanged();
+
+        saveInternally();
     }
 
-    /**
-     * saveInternally Method - saves data in json format to be accessed internally
-     * @param newList
-     */
-    private void saveInternally(List<TodoModel> newList) {
-        sharedPreferences.edit().putString(KEY_LIST, new Gson().toJson(newList)).apply();
+
+    private void saveInternally() {
+        sharedPreferences.edit().putString(KEY_LIST, new Gson().toJson(list)).apply();
     }
 
     // * getCurrentSize Method - gets the length of the added or removes items in the list
     public int getCurrentSize() {
-        List<TodoModel> todoModels = getFromDisk();
-        return todoModels.size() + 1;
+//        List<TodoModel> todoModels = getFromDisk();
+        return list.size() + 1;
     }
 }
 

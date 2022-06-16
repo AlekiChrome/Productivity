@@ -25,6 +25,7 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
     }
 
 
+
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,5 +47,10 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
     @Override
     public int getItemCount() {
         return currentList.size();
+    }
+
+    public void refreshList(List<TodoModel> list) {
+        this.currentList = list;
+        notifyDataSetChanged();
     }
 }

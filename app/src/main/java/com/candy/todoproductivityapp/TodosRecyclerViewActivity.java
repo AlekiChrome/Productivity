@@ -44,6 +44,8 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
 
         adapter = new TodosRecyclerViewAdapter(list, this);
         todosRecyclerView.setAdapter(adapter);
+
+
     }
 
     /**
