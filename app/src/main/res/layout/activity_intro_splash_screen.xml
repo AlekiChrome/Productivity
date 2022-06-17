@@ -4,16 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tdb"
     tools:context=".IntroSplashScreenActivity">
 
     <Button
         android:id="@+id/btn_access_todos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="325dp"
+        android:layout_marginBottom="192dp"
+        android:backgroundTint="#9C6E62"
+        android:fontFamily="monospace"
+        android:gravity="center"
         android:text="Access Todos"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_logo"
+        android:layout_width="221dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="111dp"
+        android:fontFamily="@font/gochi_hand"
+        android:text="TApp"
+        android:textColor="#D7F3EBEB"
+        android:textSize="96sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="monospace"
+        android:text="Todo App"
+        android:textColor="#D7F3EBEB"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name_logo"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
