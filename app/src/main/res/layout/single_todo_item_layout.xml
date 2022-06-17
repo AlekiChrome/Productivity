@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     layout_height="match_parent"
@@ -32,6 +33,7 @@
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="35dp" />
 
+
         <TextView
             android:id="@+id/tv_display_todo_content"
             android:layout_width="wrap_content"
@@ -43,15 +45,12 @@
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="75dp" />
 
-        <ImageView
-            android:id="@+id/img_delete"
+        <CheckBox
+            android:id="@+id/cb_todo_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
-            android:paddingEnd="15dp"
-            android:src="@drawable/ic_baseline_delete_24" />
+            android:gravity="center"
+            android:layout_gravity="end"/>
 
 
     </LinearLayout>

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
 
     Button btnAdd;
     Button btnLogOut;
+
 
     TextView tvDisplayUserName;
     TextView tvDisplayUserEmail;
@@ -64,6 +66,7 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
                 Toast.makeText(TodosRecyclerViewActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
         TodoHelper toDoHelper = new TodoHelper(getApplicationContext());

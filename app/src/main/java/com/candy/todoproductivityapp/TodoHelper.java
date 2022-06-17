@@ -69,6 +69,10 @@ public class TodoHelper {
             }
         }
         list = newList;
+        // 1.-  adapter.setNewList(list);
+
+        // list.clear()
+        // list.readFromSharedPreferences();
         adapter.notifyDataSetChanged();
         saveInternally();
     }

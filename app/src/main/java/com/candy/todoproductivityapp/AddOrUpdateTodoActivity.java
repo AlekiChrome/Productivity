@@ -24,7 +24,7 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
 
     Button btnSaveTodo;
     Button btnCancelTodo;
-    ImageView imgDelete;
+
 
     private int currentId;
 
@@ -130,7 +130,6 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
         etTitle = findViewById(R.id.et_todo_title);
         etContent = findViewById(R.id.et_todo_content);
         btnSaveTodo = findViewById(R.id.btn_save);
-        imgDelete = findViewById(R.id.img_delete);
         btnCancelTodo = findViewById(R.id.btn_cancel);
         btnSaveTodo.setOnClickListener(v -> save());
 //        imgDelete.setOnClickListener(v -> delete(currentId));
@@ -142,9 +141,5 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
         return currentId != DEFAULT_ID;
     }
 
-//    @Override
-//    public void onItemLongClick(int position) {
-//        todoHelper.list.remove(position);
-//        adapter.notifyItemRemoved(position);
-//    }
+
 }
