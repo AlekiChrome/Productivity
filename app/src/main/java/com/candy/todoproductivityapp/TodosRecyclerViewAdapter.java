@@ -19,6 +19,13 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
     private TodosRecyclerViewInterface todosRecyclerViewInterface;
 
 
+    public void refreshData(List<TodoModel> newList) {
+        this.currentList.clear();
+        this.currentList.addAll(newList);
+        notifyDataSetChanged();
+
+    }
+
     public TodosRecyclerViewAdapter(List<TodoModel> currentList, Context context) {
         this.currentList = currentList;
         this.context = context;
