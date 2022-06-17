@@ -2,7 +2,6 @@ package com.candy.todoproductivityapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -17,13 +16,13 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
 
     private List<TodoModel> currentList;
     private final Context context;
+    private TodosRecyclerViewInterface todosRecyclerViewInterface;
 
 
     public TodosRecyclerViewAdapter(List<TodoModel> currentList, Context context) {
         this.currentList = currentList;
         this.context = context;
     }
-
 
 
     @NonNull
@@ -35,8 +34,9 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
 //
 //        return todoViewHolder;
 
-        return new TodoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_item_layout, parent, false), context);
+        return new TodoViewHolder(todosRecyclerViewInterface, LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_item_layout, parent, false), context);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
@@ -49,8 +49,4 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
         return currentList.size();
     }
 
-//    public void refreshList(List<TodoModel> list) {
-//        this.currentList = list;
-//        notifyDataSetChanged();
-//    }
 }

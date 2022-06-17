@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#57413B"
     tools:context=".AddOrUpdateTodoActivity">
 
     <EditText
         android:id="@+id/et_todo_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="#E6DFDF"
+        android:textColorHint="#E6DFDF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,16 +28,15 @@
         android:id="@+id/et_todo_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="127dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="127dp"
         android:ems="10"
         android:hint="Content"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
+        android:textColor="#E6DFDF"
+        android:textColorHint="#E6DFDF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,18 +45,23 @@
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="251dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="277dp"
+        android:backgroundTint="#9C6E62"
         android:text="Save"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="2dp"
+        android:backgroundTint="#9C6E62"
         android:text="Cancel"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_save"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_save" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

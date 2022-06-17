@@ -9,20 +9,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.candy.todoproductivityapp.AddOrUpdateTodoActivity;
 import com.candy.todoproductivityapp.R;
+import com.candy.todoproductivityapp.TodosRecyclerViewInterface;
 
 import uber.candy.todo.model.TodoModel;
 
 public class TodoViewHolder extends RecyclerView.ViewHolder {
 
+    private final TodosRecyclerViewInterface todosRecyclerViewInterface;
+
     private final TextView tvTitle;
     private final TextView tvContent;
+
     private Context context;
 
-    public TodoViewHolder(@NonNull View itemView, Context context) {
+
+    public TodoViewHolder(TodosRecyclerViewInterface todosRecyclerViewInterface, @NonNull View itemView, Context context) {
         super(itemView);
+        this.todosRecyclerViewInterface = todosRecyclerViewInterface;
         tvTitle = itemView.findViewById(R.id.tv_display_todo_title);
         tvContent = itemView.findViewById(R.id.tv_display_todo_content);
         this.context = context;
+
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View view) {
+                if(todosRecyclerViewInterface != null) {
+                    int pos = getAdapterPosition();
+
+                    if (pos != RecyclerView.NO_POSITION) {
+                        todosRecyclerViewInterface.onItemLongClick(pos);
+                    }
+                }
+                return true;
+            }
+        });
+
     }
 
     public void bind(TodoModel todo) {
@@ -37,6 +59,5 @@ public class TodoViewHolder extends RecyclerView.ViewHolder {
     private void showDetails(TodoModel todo) {
         context.startActivity(AddOrUpdateTodoActivity.contstructEditIntent(todo, context));
     }
-
 }
 

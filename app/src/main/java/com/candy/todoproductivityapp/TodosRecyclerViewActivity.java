@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uber.candy.todo.model.TodoModel;
+import view.holder.TodoViewHolder;
 
 public class TodosRecyclerViewActivity extends AppCompatActivity {
     Button btnAdd;
@@ -50,6 +51,5 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
     private void addNewTodo() {
         startActivity(AddOrUpdateTodoActivity.constructCreateIntent(this));
     }
-
 
 }

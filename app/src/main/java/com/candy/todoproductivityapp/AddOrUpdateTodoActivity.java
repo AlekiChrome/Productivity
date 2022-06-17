@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import uber.candy.todo.model.TodoModel;
+import view.holder.TodoViewHolder;
 
-public class AddOrUpdateTodoActivity extends AppCompatActivity {
+public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosRecyclerViewInterface {
     private static final String EXTRA_ID = "extra_id";
     private static final String EXTRA_TITLE = "extra_title";
     private static final String EXTRA_CONTENT = "extra_content";
@@ -20,12 +20,13 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
 
     EditText etTitle;
     EditText etContent;
-    TextView tvId;
 
     Button btnSaveTodo;
     Button btnCancelTodo;
 
     private int currentId;
+
+    TodosRecyclerViewAdapter adapter;
 
     // It is not possible to pass an object to an Activity, so this has to be static.
     public static TodoHelper todoHelper;
@@ -99,7 +100,7 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
      */
 
     private void updateTodo(int currentId) {
-        TodoModel newTodo = new TodoModel(currentId, etContent.getText().toString(), etTitle.getText().toString());
+        TodoModel newTodo = new TodoModel(currentId, etTitle.getText().toString(), etContent.getText().toString());
         todoHelper.update(newTodo);
     }
 
@@ -112,7 +113,6 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
 
 
         if (isUpdatingTodo(currentId)) {
-//            tvId.setText(String.valueOf(currentId));
             etTitle.setText(title);
             etContent.setText(content);
         }
@@ -128,7 +128,14 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
         btnCancelTodo.setOnClickListener(v -> finish());
     }
 
+
     private boolean isUpdatingTodo(int currentId) {
         return currentId != DEFAULT_ID;
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        todoHelper.list.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 }

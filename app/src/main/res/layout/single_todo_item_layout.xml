@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     layout_height="match_parent"
-    app:cardCornerRadius="12dp"
+    layout_width="match_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     android:elevation="12dp"
     android:padding="5dp"
     android:text="TextView"
-    android:layout_margin="4dp">
+    app:cardBackgroundColor="#855B54"
+    app:cardCornerRadius="12dp">
 
     <LinearLayout
         android:id="@+id/cd_single_todo_display"
@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:fontFamily="monospace"
             android:padding="5dp"
             android:text="Title"
             android:textAllCaps="true"
@@ -36,10 +37,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:fontFamily="monospace"
             android:padding="5dp"
             android:text="content"
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="75dp" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:paddingEnd="15dp"
+            android:src="@drawable/ic_baseline_delete_24" />
 
 
     </LinearLayout>
