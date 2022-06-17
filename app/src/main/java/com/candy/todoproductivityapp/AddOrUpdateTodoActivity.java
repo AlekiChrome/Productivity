@@ -26,7 +26,9 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
     Button btnCancelTodo;
 
     private int currentId;
-    private TodoHelper todoHelper;
+
+    // It is not possible to pass an object to an Activity, so this has to be static.
+    public static TodoHelper todoHelper;
 
     /**
      *
@@ -53,7 +55,6 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_or_update_todo);
-        todoHelper = new TodoHelper(getApplicationContext());
         initView();
         bindData();
 

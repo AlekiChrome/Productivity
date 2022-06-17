@@ -37,7 +37,7 @@ public class TodoHelper {
 
 
     // * get content stored on disk (tell Gson to convert list of todos)
-    public List<TodoModel> getFromDisk() {
+    public void getFromDisk() {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(KEY_LIST, null);
 
@@ -45,7 +45,12 @@ public class TodoHelper {
         }.getType();
 
         list = gson.fromJson(json, type);
-        return list == null ? new ArrayList<>() : new ArrayList<>(list) ;
+
+        // The list will be null when there is not existing data (or it's mangled). So start with an
+        // empty list in that case.
+        if (list == null) {
+            list = new ArrayList<>();
+        }
     }
 
     /**
