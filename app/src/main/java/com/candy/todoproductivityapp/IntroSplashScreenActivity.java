@@ -43,7 +43,7 @@ public class IntroSplashScreenActivity extends AppCompatActivity {
             }
 
             private void constructEditIntent() {
-                Intent intent = new Intent(IntroSplashScreenActivity.this, TodosRecyclerViewActivity.class);
+                Intent intent = new Intent(IntroSplashScreenActivity.this, UserCredentialsActivity.class);
                 startActivity(intent);
             }
         });

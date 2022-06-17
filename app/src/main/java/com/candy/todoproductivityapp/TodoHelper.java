@@ -59,15 +59,17 @@ public class TodoHelper {
      */
     public void update(TodoModel newTodo) {
 //        List<TodoModel> currentList = getFromDisk();
-//        List<TodoModel> newList = new ArrayList<>();
+        List<TodoModel> newList = new ArrayList<>();
 
         for (TodoModel current : list) {
             if (current.getId() == newTodo.getId()) {
-                list.add(current);
+                newList.add(newTodo);
             } else {
-                list.add(newTodo);
+                newList.add(current);
             }
         }
+        list = newList;
+        adapter.notifyDataSetChanged();
         saveInternally();
     }
 
