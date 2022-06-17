@@ -4,23 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Application;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import uber.candy.todo.model.TodoModel;
-import view.holder.TodoViewHolder;
 
 public class TodosRecyclerViewActivity extends AppCompatActivity {
 
@@ -35,6 +28,7 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
 
     TextView tvDisplayUserName;
     TextView tvDisplayUserEmail;
+    private TodoHelper toDoHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +62,7 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
         });
 
 
-
-        TodoHelper toDoHelper = new TodoHelper(getApplicationContext());
+        toDoHelper = new TodoHelper(getApplicationContext());
         toDoHelper.getFromDisk();
 
         btnAdd = findViewById(R.id.btn_add_todo);
@@ -78,12 +71,12 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
         RecyclerView todosRecyclerView = findViewById(R.id.rv_todo_list_items);
         todosRecyclerView.setHasFixedSize(true);
 
-        Toast.makeText(this,"Todo Count: " + toDoHelper.list.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Todo Count: " + toDoHelper.latestList.size(), Toast.LENGTH_SHORT).show();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         todosRecyclerView.setLayoutManager(layoutManager);
 
-        toDoHelper.adapter = new TodosRecyclerViewAdapter(toDoHelper.list, this);
+        toDoHelper.adapter = new TodosRecyclerViewAdapter(toDoHelper.latestList, this);
         todosRecyclerView.setAdapter(toDoHelper.adapter);
 
         AddOrUpdateTodoActivity.todoHelper = toDoHelper;
@@ -96,4 +89,21 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
         startActivity(AddOrUpdateTodoActivity.constructCreateIntent(this));
     }
 
+    /**
+     * To refresh the list, you must know a timing to refresh it.
+     * Or we should you have to know when you could refresh it.
+     * In Android, we have activity lifecycle. And onResume is the one that will always be called
+     * when your activity is visible.
+     *
+     *
+     * Once you know how to refresh it, then you need to get the latest data.
+     * That is the reason why we fetch it from the disk again.
+     *
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<TodoModel> newList = toDoHelper.fetchFromDisk();
+        toDoHelper.adapter.refreshData(newList);
+    }
 }

@@ -5,6 +5,8 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,7 +24,7 @@ public class TodoHelper {
     public TodosRecyclerViewAdapter adapter;
 
     private final SharedPreferences sharedPreferences;
-    public List<TodoModel> list;
+    public List<TodoModel> latestList;
 
 
 
@@ -32,25 +34,28 @@ public class TodoHelper {
      */
     public TodoHelper(Context applicationContext) {
         sharedPreferences = applicationContext.getSharedPreferences(NAME_OF_SHARED_PREFS, MODE_PRIVATE);
-        list = new ArrayList<>();
+        latestList = new ArrayList<>();
     }
 
 
     // * get content stored on disk (tell Gson to convert list of todos)
     public void getFromDisk() {
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_LIST, null);
-
-        Type type = new TypeToken<List<TodoModel>>() {
-        }.getType();
-
-        list = gson.fromJson(json, type);
+        List<TodoModel> latestList = fetchFromDisk();
+        this.latestList = latestList;
 
         // The list will be null when there is not existing data (or it's mangled). So start with an
         // empty list in that case.
-        if (list == null) {
-            list = new ArrayList<>();
+        if (this.latestList == null) {
+            this.latestList = new ArrayList<>();
         }
+    }
+
+    public List<TodoModel> fetchFromDisk() {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(KEY_LIST, null);
+        Type type = new TypeToken<List<TodoModel>>() {
+        }.getType();
+        return gson.fromJson(json, type);
     }
 
     /**
@@ -61,19 +66,19 @@ public class TodoHelper {
 //        List<TodoModel> currentList = getFromDisk();
         List<TodoModel> newList = new ArrayList<>();
 
-        for (TodoModel current : list) {
+        for (TodoModel current : latestList) {
             if (current.getId() == newTodo.getId()) {
                 newList.add(newTodo);
             } else {
                 newList.add(current);
             }
         }
-        list = newList;
+        latestList = newList;
         // 1.-  adapter.setNewList(list);
 
         // list.clear()
         // list.readFromSharedPreferences();
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
         saveInternally();
     }
 
@@ -84,7 +89,7 @@ public class TodoHelper {
     public void insert(TodoModel newTodo) {
 //        List<TodoModel> currentList = getFromDisk();
 //        List<TodoModel> newList = new ArrayList<>(currentList);
-        list.add(newTodo);
+        latestList.add(newTodo);
 
         adapter.notifyDataSetChanged();
 
@@ -93,13 +98,13 @@ public class TodoHelper {
 
 
     private void saveInternally() {
-        sharedPreferences.edit().putString(KEY_LIST, new Gson().toJson(list)).apply();
+        sharedPreferences.edit().putString(KEY_LIST, new Gson().toJson(latestList)).apply();
     }
 
     // * getCurrentSize Method - gets the length of the added or removes items in the list
     public int getCurrentSize() {
 //        List<TodoModel> todoModels = getFromDisk();
-        return list.size() + 1;
+        return latestList.size() + 1;
     }
 }
 
