@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import uber.candy.todo.model.TodoModel;
 import view.holder.TodoViewHolder;
 
-public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosRecyclerViewInterface {
+public class AddOrUpdateTodoActivity extends AppCompatActivity {
     private static final String EXTRA_ID = "extra_id";
     private static final String EXTRA_TITLE = "extra_title";
     private static final String EXTRA_CONTENT = "extra_content";
@@ -23,6 +24,7 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosR
 
     Button btnSaveTodo;
     Button btnCancelTodo;
+    ImageView imgDelete;
 
     private int currentId;
 
@@ -91,6 +93,11 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosR
         todoHelper.insert(newTodo);
     }
 
+//    private void delete(int position) {
+//        todoHelper.list.remove(position);
+//        adapter.notifyDataSetChanged();
+//    }
+
     /**
      *
      * if the user quits the app, then when they come back to it, their data is still available.
@@ -123,8 +130,10 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosR
         etTitle = findViewById(R.id.et_todo_title);
         etContent = findViewById(R.id.et_todo_content);
         btnSaveTodo = findViewById(R.id.btn_save);
+        imgDelete = findViewById(R.id.img_delete);
         btnCancelTodo = findViewById(R.id.btn_cancel);
         btnSaveTodo.setOnClickListener(v -> save());
+//        imgDelete.setOnClickListener(v -> delete(currentId));
         btnCancelTodo.setOnClickListener(v -> finish());
     }
 
@@ -133,9 +142,9 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity implements TodosR
         return currentId != DEFAULT_ID;
     }
 
-    @Override
-    public void onItemLongClick(int position) {
-        todoHelper.list.remove(position);
-        adapter.notifyItemRemoved(position);
-    }
+//    @Override
+//    public void onItemLongClick(int position) {
+//        todoHelper.list.remove(position);
+//        adapter.notifyItemRemoved(position);
+//    }
 }

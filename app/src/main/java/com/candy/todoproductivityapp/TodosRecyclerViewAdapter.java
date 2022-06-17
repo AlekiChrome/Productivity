@@ -34,7 +34,7 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
 //
 //        return todoViewHolder;
 
-        return new TodoViewHolder(todosRecyclerViewInterface, LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_item_layout, parent, false), context);
+        return new TodoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_item_layout, parent, false), context);
     }
 
 

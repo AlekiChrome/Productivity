@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#57413B"
+    android:background="#855B54"
     tools:context=".AddOrUpdateTodoActivity">
 
     <EditText
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="277dp"
-        android:backgroundTint="#9C6E62"
+        android:backgroundTint="#B38E84"
         android:text="Save"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
-        android:backgroundTint="#9C6E62"
+        android:backgroundTint="#B38E84"
         android:text="Cancel"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
