@@ -17,10 +17,6 @@ import java.util.List;
 import uber.candy.todo.model.TodoModel;
 
 public class TodosRecyclerViewActivity extends AppCompatActivity {
-
-    private TodosRecyclerViewAdapter adapter;
-    private TodoHelper toDoHelper;
-
     Button btnAdd;
 
     @Override
@@ -28,8 +24,8 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todos_recycler_view);
 
-        toDoHelper = new TodoHelper(getApplicationContext());
-        List<TodoModel> list = toDoHelper.getFromDisk();
+        TodoHelper toDoHelper = new TodoHelper(getApplicationContext());
+        toDoHelper.getFromDisk();
 
         btnAdd = findViewById(R.id.btn_add_todo);
         btnAdd.setOnClickListener(v -> addNewTodo());
@@ -37,15 +33,15 @@ public class TodosRecyclerViewActivity extends AppCompatActivity {
         RecyclerView todosRecyclerView = findViewById(R.id.rv_todo_list_items);
         todosRecyclerView.setHasFixedSize(true);
 
-        Toast.makeText(this,"Todo Count: " + list.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Todo Count: " + toDoHelper.list.size(), Toast.LENGTH_SHORT).show();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         todosRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new TodosRecyclerViewAdapter(list, this);
-        todosRecyclerView.setAdapter(adapter);
+        toDoHelper.adapter = new TodosRecyclerViewAdapter(toDoHelper.list, this);
+        todosRecyclerView.setAdapter(toDoHelper.adapter);
 
-
+        AddOrUpdateTodoActivity.todoHelper = toDoHelper;
     }
 
     /**
