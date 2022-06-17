@@ -49,8 +49,8 @@ public class TodosRecyclerViewAdapter extends RecyclerView.Adapter<TodoViewHolde
         return currentList.size();
     }
 
-    public void refreshList(List<TodoModel> list) {
-        this.currentList = list;
-        notifyDataSetChanged();
-    }
+//    public void refreshList(List<TodoModel> list) {
+//        this.currentList = list;
+//        notifyDataSetChanged();
+//    }
 }

@@ -112,7 +112,7 @@ public class AddOrUpdateTodoActivity extends AppCompatActivity {
 
 
         if (isUpdatingTodo(currentId)) {
-            tvId.setText(String.valueOf(currentId));
+//            tvId.setText(String.valueOf(currentId));
             etTitle.setText(title);
             etContent.setText(content);
         }
